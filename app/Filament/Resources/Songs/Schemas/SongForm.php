@@ -41,7 +41,9 @@ class SongForm
                 FileUpload::make('file_path')
                     ->label('Archivo de audio')
                     ->acceptedFileTypes(['audio/mpeg', 'audio/wav', 'audio/ogg'])
-                    ->directory('songs'),
+                    ->disk('s3')
+                    ->directory('songs')
+                    ->visibility('public'),
             ]);
     }
 }

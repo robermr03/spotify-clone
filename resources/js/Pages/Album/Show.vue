@@ -39,7 +39,7 @@
             </div>
 
             <!-- aquí itera las canciones del álbum -->
-             <Link v-for="(song,index) in album.songs" :key="song.id">
+             <Link v-for="(song,index) in album.songs" :key="song.id" @click="player.play({...song, album: album})">
                 <div class="px-5 py-3 grid grid-cols-12 text-xs tracking-widest" style="color: #6b7280;">
                     <span class="col-span-1">{{ index + 1 }}</span>
                     <span class="col-span-7">{{ song.title }}</span>
@@ -56,6 +56,9 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue'
 import { Link } from '@inertiajs/vue3'
+import { usePlayerStore } from '@/stores/player'
+
+const player = usePlayerStore()
 
 // define las props
 defineProps({

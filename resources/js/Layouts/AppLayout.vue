@@ -51,10 +51,7 @@
         </aside>
 
         <!-- Player inferior -->
-        <div class="fixed bottom-0 left-0 right-0 h-20 flex items-center justify-center px-6"
-            style="background: #0d0d14; border-top: 1px solid rgba(255,255,255,0.06);">
-            <p class="text-sm" style="color: #6b7280;">Ninguna canción reproduciéndose</p>
-        </div>
+        <Player/>
 
         <!-- Contenido principal -->
         <main class="ml-60 pb-20 p-8">
@@ -67,6 +64,7 @@
 <script setup>
 import { Link, router, usePage } from '@inertiajs/vue3'
 import { computed } from 'vue'
+import Player from '../Components/Player.vue'
 
 const page = usePage()
 

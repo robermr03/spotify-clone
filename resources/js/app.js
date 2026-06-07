@@ -2,6 +2,7 @@ import '../css/app.css'
 import { createApp, h } from 'vue'
 import { createInertiaApp } from '@inertiajs/vue3'
 import { ZiggyVue } from 'ziggy-js'
+import {createPinia} from 'pinia'
 
 createInertiaApp({
     resolve: name => {
@@ -12,6 +13,13 @@ createInertiaApp({
         createApp({ render: () => h(App, props) })
             .use(plugin)
             .use(ZiggyVue)
+            .use(createPinia())
             .mount(el)
     },
 })
+
+// Desbloquear audio con el primer click
+document.addEventListener('click', () => {
+    const audio = new Audio()
+    audio.play().catch(() => {})
+}, { once: true })
