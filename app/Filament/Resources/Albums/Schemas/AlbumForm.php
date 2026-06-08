@@ -14,9 +14,10 @@ class AlbumForm
     {
         return $schema
             ->components([
-                Select::make('artist_id')
-                    ->label('Artista')
-                    ->relationship('artist', 'name')
+                Select::make('artists')
+                    ->label('Artistas')
+                    ->relationship('artists', 'name')
+                    ->multiple()
                     ->searchable()
                     ->required(),
 
@@ -38,10 +39,9 @@ class AlbumForm
                 DatePicker::make('release_date')
                     ->label('Fecha de lanzamiento'),
 
-                FileUpload::make('cover')
+                TextInput::make('cover')
                     ->label('Portada')
-                    ->image()
-                    ->directory('albums'),
+                    ->url(),
             ]);
     }
 }

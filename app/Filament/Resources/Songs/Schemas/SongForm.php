@@ -13,9 +13,10 @@ class SongForm
     {
         return $schema
             ->components([
-                Select::make('artist_id')
-                    ->label('Artista')
-                    ->relationship('artist', 'name')
+                Select::make('artists')
+                    ->label('Artistas')
+                    ->relationship('artists', 'name')
+                    ->multiple()
                     ->searchable()
                     ->required(),
 

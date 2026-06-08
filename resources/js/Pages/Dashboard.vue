@@ -51,7 +51,7 @@
                     <div class="flex-1 min-w-0">
                         <p class="text-sm font-medium truncate" style="color: #f1f0f5;">{{ song.title }}</p>
                         <p class="text-xs mt-0.5 truncate" style="color: #6b7280;">
-                            {{ song.artist.name }} · {{ song.album.title }}
+                            {{ song.artists.map(a => a.name).join(', ') }} · {{ song.album.title }}
                         </p>
                     </div>
 

@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Artist extends Model
 {
@@ -11,16 +11,18 @@ class Artist extends Model
         'name',
         'bio',
         'image',
-        'country'
+        'country',
     ];
 
-    public function albums(): HasMany
+    public function albums(): BelongsToMany
     {
-        return $this->hasMany(Album::class);
+        return $this->belongsToMany(Album::class, 'artist_album')
+                    ->withTimestamps();
     }
 
-    public function songs(): HasMany
+    public function songs(): BelongsToMany
     {
-        return $this->hasMany(Song::class);
+        return $this->belongsToMany(Song::class, 'artist_song')
+                    ->withTimestamps();
     }
 }

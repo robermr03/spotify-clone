@@ -24,7 +24,7 @@
                 </div>
                 <div class="min-w-0">
                     <p class="text-sm font-medium truncate" style="color: #f1f0f5;">{{ player.currentSong.title }}</p>
-                    <p class="text-xs truncate" style="color: #6b7280;">{{ player.currentSong.artist?.name }}</p>
+                    <p class="text-xs truncate" style="color: #6b7280;">{{ player.currentSong.artists?.map(a => a.name).join(' · ') }}</p>
                 </div>
             </div>
 

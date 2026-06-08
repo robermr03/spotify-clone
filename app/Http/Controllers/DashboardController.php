@@ -14,7 +14,7 @@ class DashboardController extends Controller
     {
         return Inertia::render('Dashboard', [
             'artists' => Artist::withCount('songs')->take(6)->get(),
-            'recentSongs' => Song::with(['artist', 'album'])->latest()->take(10)->get(),
+            'recentSongs' => Song::with(['artists', 'album'])->latest()->take(10)->get(),
         ]);
     }
 }

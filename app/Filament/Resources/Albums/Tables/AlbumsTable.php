@@ -23,8 +23,8 @@ class AlbumsTable
                     ->searchable()
                     ->sortable(),
 
-                TextColumn::make('artist.name')
-                    ->label('Artista')
+                TextColumn::make('artists.name')
+                    ->label('Artistas')
                     ->searchable()
                     ->sortable(),
 

@@ -22,10 +22,10 @@ class ArtistForm
                     ->label('País')
                     ->maxLength(255),
 
-                FileUpload::make('image')
-                    ->label('Imagen')
-                    ->image()
-                    ->directory('artists'),
+                TextInput::make('image')
+                    ->label('URL de imagen')
+                    ->placeholder('https://i.scdn.co/image/...')
+                    ->url(),
 
                 Textarea::make('bio')
                     ->label('Biografía')

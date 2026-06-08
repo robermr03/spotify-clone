@@ -13,7 +13,6 @@ class Song extends Model
 {
     protected $fillable = [
         'album_id',
-        'artist_id',
         'title',
         'file_path',
         'duration',
@@ -29,9 +28,10 @@ class Song extends Model
         return $this->belongsTo(Album::class);
     }
 
-    public function artist(): BelongsTo
+    public function artists(): BelongsToMany
     {
-        return $this->belongsTo(Artist::class);
+        return $this->belongsToMany(Artist::class)
+                    ->withTimestamps();
     }
 
     public function playlists(): BelongsToMany
@@ -60,4 +60,5 @@ class Song extends Model
                 :null
         );
     }
+
 }

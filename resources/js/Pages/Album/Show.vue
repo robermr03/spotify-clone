@@ -14,15 +14,21 @@
             </div>
             <div>
                 <!-- tipo del álbum en mayúsculas pequeñas -->
-                 <p style="color: white;">{{ album.type.toUpperCase() }}</p>
+                <p style="color: white;">{{ album.type.toUpperCase() }}</p>
                 <!-- título del álbum grande -->
-                 <p style="color: white;" class="text-2xl">{{ album.title }}</p>
+                <p style="color: white;" class="text-2xl">{{ album.title }}</p>
                 <!-- link al artista en violeta -->
-                 <Link :href="route('artists.show', album.artist.id)" style="color: #a855f7;">
-                    {{ album.artist.name }}
-                </Link>
+                <div class="flex gap-1 flex-wrap">
+                    <span v-for="(artist, index) in album.artists" :key="artist.id">
+                        <Link :href="route('artists.show', artist.id)" style="color: #a855f7;">
+                            {{ artist.name }}
+                        </Link>
+                        <span v-if="index < album.artists.length - 1" style="color: #6b7280;"> · </span>
+                    </span>
+                </div>
                 <!-- año de lanzamiento · número de canciones -->
-                 <p style="color: #6b7280;">{{ album.release_date?.slice(0,4) }} · {{ album.songs.length }} canciones</p>
+                <p style="color: #6b7280;">{{ album.release_date?.slice(0, 4) }} · {{ album.songs.length }} canciones
+                </p>
             </div>
         </div>
 
@@ -39,7 +45,7 @@
             </div>
 
             <!-- aquí itera las canciones del álbum -->
-             <Link v-for="(song,index) in album.songs" :key="song.id" @click="player.play({...song, album: album})">
+            <Link v-for="(song, index) in album.songs" :key="song.id" @click="player.play({ ...song, album: album })">
                 <div class="px-5 py-3 grid grid-cols-12 text-xs tracking-widest" style="color: #6b7280;">
                     <span class="col-span-1">{{ index + 1 }}</span>
                     <span class="col-span-7">{{ song.title }}</span>
@@ -65,10 +71,10 @@ defineProps({
     album: Object,
 });
 // define formatDuration
-const formatDuration = (seconds) =>{
+const formatDuration = (seconds) => {
     if (!seconds) return '--:--'
-    const minutes = Math.floor(seconds/60)
+    const minutes = Math.floor(seconds / 60)
     const resto = seconds % 60
-    return `${minutes}:${resto.toString().padStart(2,'0')}`
+    return `${minutes}:${resto.toString().padStart(2, '0')}`
 }
 </script>

@@ -12,7 +12,7 @@ class AlbumController extends Controller
     public function show(Album $album): Response
     {
         return Inertia::render('Album/Show', [
-            'album' => $album->load(['artist', 'songs.artist']),
+            'album' => $album->load(['artists', 'songs.artists']),
         ]);
     }
 }
