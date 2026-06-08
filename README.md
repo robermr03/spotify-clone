@@ -1,59 +1,153 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🎵 Melodify — Spotify Architecture Clone
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A music streaming platform built with Laravel, replicating Spotify's core architecture. Not just a UI clone — a real implementation of the technical decisions behind a production-grade streaming service.
 
-## About Laravel
+![PHP](https://img.shields.io/badge/PHP-777BB4?style=flat&logo=php&logoColor=white)
+![Laravel](https://img.shields.io/badge/Laravel-FF2D20?style=flat&logo=laravel&logoColor=white)
+![Vue.js](https://img.shields.io/badge/Vue.js-4FC08D?style=flat&logo=vue.js&logoColor=white)
+![AWS](https://img.shields.io/badge/AWS-232F3E?style=flat&logo=amazonaws&logoColor=white)
+![Redis](https://img.shields.io/badge/Redis-DC382D?style=flat&logo=redis&logoColor=white)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## ✨ Features
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- 🔐 **Authentication** — Laravel Sanctum with session-based auth
+- 🎵 **Audio streaming** — Files stored and served from AWS S3
+- 🎛️ **Persistent player** — Global state with Pinia, plays across page navigation
+- 📋 **Playlists** — Create, edit and manage personal playlists
+- 🎨 **Admin panel** — Full content management with Filament v5
+- ⚡ **Real-time** — Friend activity with Laravel Reverb and WebSockets
+- 🤖 **Recommendations** — History-based suggestions via background Jobs and Redis
+- 🐳 **Docker** — Full environment with Docker Compose
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+## 🛠️ Tech Stack
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+| Layer | Technology |
+|-------|-----------|
+| Backend | Laravel 12, PHP 8.2 |
+| Frontend | Vue 3, Inertia.js, Tailwind CSS |
+| State | Pinia |
+| Database | MySQL, Redis |
+| Storage | AWS S3 |
+| Admin | Filament v5 |
+| Real-time | Laravel Reverb |
+| Auth | Laravel Sanctum |
 
-## Laravel Sponsors
+---
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## ⚙️ Installation
 
-### Premium Partners
+**1. Clone the repository**
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+    git clone https://github.com/robermr03/spotify-clone.git
+    cd spotify-clone
 
-## Contributing
+**2. Install dependencies**
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+    composer install
+    npm install
 
-## Code of Conduct
+**3. Environment setup**
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+    cp .env.example .env
+    php artisan key:generate
 
-## Security Vulnerabilities
+**4. Configure your `.env`**
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+    DB_CONNECTION=mysql
+    DB_DATABASE=spotify_clone
+    DB_USERNAME=root
+    DB_PASSWORD=
 
-## License
+    AWS_ACCESS_KEY_ID=your_key
+    AWS_SECRET_ACCESS_KEY=your_secret
+    AWS_DEFAULT_REGION=eu-north-1
+    AWS_BUCKET=your_bucket
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+    MAIL_MAILER=smtp
+    MAIL_HOST=127.0.0.1
+    MAIL_PORT=1025
+
+**5. Run migrations and seeders**
+
+    php artisan migrate --seed
+
+**6. Start all services**
+
+    # Terminal 1 — Laravel
+    php artisan serve
+
+    # Terminal 2 — Assets
+    npm run dev
+
+    # Terminal 3 — Mailpit
+    mailpit
+
+**7.** Open `http://localhost:8000`
+
+---
+
+## 📁 Project Structure
+
+    app/
+    ├── Http/Controllers/
+    │   ├── Auth/AuthController.php
+    │   ├── DashboardController.php
+    │   ├── ArtistController.php
+    │   └── AlbumController.php
+    ├── Models/
+    │   ├── Song.php           # file_url accessor → S3 URL
+    │   ├── Artist.php
+    │   ├── Album.php
+    │   └── Playlist.php
+    ├── Filament/Resources/
+    └── ...
+
+    resources/js/
+    ├── Pages/
+    ├── Components/
+    │   └── Player.vue         # Persistent audio player
+    ├── Layouts/
+    │   └── AppLayout.vue
+    └── stores/
+        └── player.js          # Pinia store — global audio state
+
+---
+
+## 🔄 How the player works
+
+The Audio object lives outside Vue so it is never destroyed on navigation — this is what makes the player persistent.
+
+    User clicks a song
+        → player.play(song) called on Pinia store
+        → Audio element loads S3 URL
+        → Song plays without interruption across navigation
+        → timeupdate listener syncs progress bar in real-time
+
+---
+
+## 📸 Screenshots
+
+<!-- Add screenshots here -->
+
+---
+
+## 🚀 Roadmap
+
+- [ ] Likes and saved songs
+- [ ] Search with Laravel Scout
+- [ ] Redis caching and trending songs
+- [ ] Real-time friend activity with Reverb
+- [ ] Recommendations engine with background Jobs
+- [ ] Docker Compose full setup
+- [ ] Tests with Pest
+
+---
+
+## 👨‍💻 Author
+
+**Roberto Romero Monge**
+[LinkedIn](https://www.linkedin.com/in/roberto-romero-monge/) · [GitHub](https://github.com/robermr03)
