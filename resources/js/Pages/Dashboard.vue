@@ -45,6 +45,7 @@
                     :key="song.id"
                     class="flex items-center gap-4 px-5 py-3 transition cursor-pointer"
                     style="border-bottom: 1px solid rgba(255,255,255,0.04);"
+                    @click="player.play({...song, album: song.album})"
                 >
                     <span class="text-sm w-5 text-right shrink-0" style="color: #6b7280;">{{ index + 1 }}</span>
 
@@ -66,8 +67,11 @@
 </template>
 
 <script setup>
+import { usePlayerStore } from '@/stores/player'
 import AppLayout from '@/Layouts/AppLayout.vue'
 import { Link } from '@inertiajs/vue3'
+
+const player = usePlayerStore()
 
 defineProps({
     artists:     Array,
