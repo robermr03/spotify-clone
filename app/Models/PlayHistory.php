@@ -13,6 +13,8 @@ class PlayHistory extends Model
         'played_at',
     ];
 
+    protected $table = 'play_history';
+
     protected $casts = [
         'played_at' => 'datetime',
     ];

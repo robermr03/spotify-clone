@@ -17,6 +17,14 @@ export const usePlayerStore = defineStore('player', () => {
         audio.src = song.file_url
         audio.play()
         isPlaying.value = true
+
+        fetch(`/songs/${song.id}/play`, {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.content,
+                'Content-Type': 'application/json',
+            }
+        })
     }
 
     const pause = () => {
